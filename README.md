@@ -1,5 +1,8 @@
-# box_upload
+## box_upload
 Upload a file to box.com
 
-# Usage
-## Create a config file
+## Usage
+1. Create a config file
+
+- Use the template provided
+
