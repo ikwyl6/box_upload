@@ -1,0 +1,10 @@
+{
+    "user": {
+        "client_id": "",
+        "client_secret": ""
+    },
+    "token": {
+        "access_token": "",
+        "refresh_token": ""
+    }
+}
