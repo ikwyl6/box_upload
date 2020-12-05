@@ -29,7 +29,9 @@ NOTE: You will only have to do the above steps once.
 NOTE: You will need to specify the remote directory that exists for the location of the file you are uploading. Otherwise it uploads the file to the root directory on box.com ('/All Files/').
 
 ## Examples of usage
-```./box_upload file```
+```
+./box_upload file
+```
 	- This uploads ```file``` to your ```/All Files/``` directory on box.com
 
 ```./box_upload -d "/All Files/Documents" /home/user/my_local_file``` 
