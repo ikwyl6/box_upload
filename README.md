@@ -40,6 +40,7 @@ Upload ```my_local_file``` to ```/All Files/Documents``` directory on box.com:
 ``` 
 
 Upload existing ```file``` (updates with new version) to box.com. 
+
 NOTE: If no ```-u``` is given then script will exit without updating existing ```file``` on box.com:
 ```
 ./box_upload -u file
