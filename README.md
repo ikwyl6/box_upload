@@ -30,10 +30,10 @@ NOTE: You will need to specify the remote directory that exists for the location
 
 ## Examples of usage
 ```./box_upload file```
-	This uploads ```file``` to your ```/All Files/``` directory on box.com
+	- This uploads ```file``` to your ```/All Files/``` directory on box.com
 
 ```./box_upload -d "/All Files/Documents" /home/user/my_local_file``` 
-	uploads ```my_local_file``` to ```/All Files/Documents``` on box.com
+	- uploads ```my_local_file``` to ```/All Files/Documents``` on box.com
 
 ```./box_upload -u file``` 
-	uploads (updates with new version) ```file``` to box.com. If no ```-u``` is given then script will exit without uploading ```file``` 
+	- uploads (updates with new version) ```file``` to box.com. If no ```-u``` is given then script will exit without uploading ```file``` 
