@@ -34,12 +34,13 @@ Upload ```file``` to your ```/All Files/``` directory on box.com:
 ./box_upload file
 ```
 
-Upload ```my_local_file``` to ```/All Files/Documents``` on box.com:
+Upload ```my_local_file``` to ```/All Files/Documents``` directory on box.com:
 ```
 ./box_upload -d "/All Files/Documents" /home/user/my_local_file
 ``` 
 
-Upload existing ```file``` updates with new version) to box.com. If no ```-u``` is given then script will exit without uploading ```file```:
+Upload existing ```file``` (updates with new version) to box.com. 
+NOTE: If no ```-u``` is given then script will exit without updating existing ```file``` on box.com:
 ```
 ./box_upload -u file
 ``` 
