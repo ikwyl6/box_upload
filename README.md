@@ -46,3 +46,5 @@ NOTE: If no ```-u``` is given then script will exit without updating existing ``
 ./box_upload -u file
 ``` 
 
+## Suggestions
+	- Create an issue if you'd like to see something added. 
