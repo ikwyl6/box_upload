@@ -15,7 +15,16 @@ A simple python script that uses OAuth 2.0 to upload a file to your box.com acco
 
 NOTE: If you change the location of your config file to be other than ```~/.box.config``` then you will need to change ```config_file``` variable in the python script.
 
-## Usage
+## First Time Use
+1. The first time you use the script it will output a link on the command line. Copy this link and paste it in your browser. This is how you will get your authentication and refresh tokens.
+2. After pasting this link you will then be prompted to log into box.com using your box.com account credentials.
+3. Choose 'Grant Access to Box' on the next page
+4. It will then bring you to a link in your browser that will probably be 'not found' or 'This site can't be reached'. In the address bar of your browser of this 'not found' link, copy the value of the ```code``` variable (everything after the 'code=' portion of the url). 
+5. Paste the value of this into the script.
+
+NOTE: You will only have to do the above steps once. 
+
+## Normal Usage
 1. Run ```./box_upload -h``` to see options. 
 NOTE: You will need to specify the remote directory that exists for the location of the file you are uploading. Otherwise it uploads the file to the root directory on box.com ('/All Files/).
 
