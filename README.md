@@ -29,20 +29,18 @@ NOTE: You will only have to do the above steps once.
 NOTE: You will need to specify the remote directory that exists for the location of the file you are uploading. Otherwise it uploads the file to the root directory on box.com ('/All Files/').
 
 ## Examples of usage
+Upload ```file``` to your ```/All Files/``` directory on box.com:
 ```
 ./box_upload file
 ```
 
-Uploads ```file``` to your ```/All Files/``` directory on box.com
-
+Upload ```my_local_file``` to ```/All Files/Documents``` on box.com:
 ```
 ./box_upload -d "/All Files/Documents" /home/user/my_local_file
 ``` 
 
-Uploads ```my_local_file``` to ```/All Files/Documents``` on box.com
-
+Upload existing ```file``` updates with new version) to box.com. If no ```-u``` is given then script will exit without uploading ```file```:
 ```
 ./box_upload -u file
 ``` 
 
-Uploads existing ```file``` updates with new version) to box.com. If no ```-u``` is given then script will exit without uploading ```file``` 
