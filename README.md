@@ -1,5 +1,5 @@
 ## box_upload
-A simple python script that uses OAuth 2.0 to upload a file to your box.com account.
+A simple python script that uses Traditional 3-Legged OAuth2 to upload a file to your box.com account.
 
 ## Script Setup
 1. Copy the config.json template to your home directory (```~/.box_config```) and ```chmod 600 ~/.box_config```
