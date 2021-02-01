@@ -46,5 +46,9 @@ NOTE: If no ```-u``` is given then script will exit without updating existing ``
 ./box_upload -u file
 ``` 
 
+Upload new file to folder that isn't present:
+```
+./box_upload -c -d '/All Files/newfolder' myfile.txt
+```
 ## Suggestions
 	- Create an issue if you'd like to see something added. 
