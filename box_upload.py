@@ -25,6 +25,8 @@ clp.add_argument('-d', '--dir', help='Remote DIR location for FILE. \
         Default: Root folder (/All Files/)')
 clp.add_argument('-u', '--update', action='store_true',
         help='Update FILE if one already exists on box.com')
+clp.add_argument('-f', '--force', action='store_true',
+        help='Force \'update\' to overwrite FILE') 
 clargs = clp.parse_args()
 
 # Save access_token and refresh_token to the config_file
@@ -96,6 +98,8 @@ def upload_file(upload_f, folder_id):
         new_file = client.folder(folder_id).upload(upload_f)
         print('File "{0}" uploaded to Box with file ID {1}'.format(
                 new_file.name, new_file.id))
+    except PermissionError as e:
+        print("Permission denied ({0})".format(upload_f))
     except BoxAPIException as e:
         if (e.status == 401):
             print("Access token expired. " + e.message)
@@ -104,10 +108,19 @@ def upload_file(upload_f, folder_id):
             # if '--update' passed then update the file
             if (clargs.update):
                 file_id = e.context_info['conflicts']['id']
-                updated_file = client.file(file_id).update_contents(upload_f)
-                print('File "{0}" has been updated'.format(updated_file.name))
+                # check if file size different, if not then pass
+                remote_fs = client.file(file_id).get().size
+                local_fs = os.path.getsize(upload_f)
+                if (local_fs != remote_fs) or \
+                    ((local_fs == remote_fs) and (clargs.force)):
+                    updated_file = client.file(file_id).update_contents(upload_f)
+                    print('File "{0}" has been updated'.format(updated_file.name))
+                else:
+                    print("local and remote files ({0}) are same size. " \
+                            "Skipping".format(upload_f))
             else:
-                print(str(e.status) + " Error: " + e.message)
+                print(str(e.status) + " Error: " + e.message +
+                        "({0})".format(upload_f))
                 print("Use '-u' or '--update' flag to update file")
                 exit(1)
 
