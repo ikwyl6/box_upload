@@ -23,6 +23,8 @@ clp = argparse.ArgumentParser(prog='box_upload',
 clp.add_argument('file', help='Local FILE to upload')
 clp.add_argument('-d', '--dir', help='Remote DIR location for FILE. \
         Default: Root folder (/All Files/)')
+clp.add_argument('-c', '--create', action='store_true', help='Create remote \
+        DIR if not present. Default: do not create.')
 clp.add_argument('-u', '--update', action='store_true',
         help='Update FILE if one already exists on box.com')
 clp.add_argument('-f', '--force', action='store_true',
@@ -148,6 +150,13 @@ def get_folder_id(folder_query):
     except UnboundLocalError:
         return None
 
+# Create remote folder 'folder'. USed with --create
+def create_folder_id(folder):
+    folder = re.sub(r'.*\/', r'', folder)
+    #print("new folder {0}".format(folder))
+    subfolder = client.folder('0').create_subfolder(folder)
+    return subfolder.id
+
 ## START ##
 if (os.path.exists(config_file)):
     try:
@@ -192,8 +201,12 @@ if (clargs.dir):
     upload_dir = clargs.dir
     folder_id = get_folder_id(upload_dir)
     if (folder_id == None):
-        print("Destination folder '{0}' not found".format(upload_dir))
-        exit(1)
+        if (clargs.create):
+            print("Folder {0} not found, creating..".format(upload_dir))
+            folder_id = create_folder_id(upload_dir)
+        else:
+            print("Destination folder '{0}' not found".format(upload_dir))
+            exit(1)
 else:
     folder_id = 0
 
