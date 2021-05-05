@@ -29,6 +29,8 @@ clp.add_argument('-u', '--update', action='store_true',
         help='Update FILE if one already exists on box.com')
 clp.add_argument('-f', '--force', action='store_true',
         help='Force \'update\' to overwrite FILE') 
+clp.add_argument('-l', '--list', action='store_true',
+        help='List folders in box.com account')
 clargs = clp.parse_args()
 
 # Save access_token and refresh_token to the config_file
@@ -150,12 +152,21 @@ def get_folder_id(folder_query):
     except UnboundLocalError:
         return None
 
-# Create remote folder 'folder'. USed with --create
+# Create remote folder 'folder'. Used with --create
 def create_folder_id(folder):
     folder = re.sub(r'.*\/', r'', folder)
     #print("new folder {0}".format(folder))
     subfolder = client.folder('0').create_subfolder(folder)
     return subfolder.id
+
+# List directories in box.com account
+def list_dirs(folder_id=0, path='/All Files/'):
+    items = client.folder(folder_id).get_items(limit=50, \
+            fields=['id,type,name'])
+    for item in items:
+        if (item.type == "folder"):
+            print("{0}".format(path + item.name))
+            list_dirs(item.id, path + item.name + '/')
 
 ## START ##
 if (os.path.exists(config_file)):
@@ -195,6 +206,9 @@ else:
     exit(1)
 
 client = Client(oauth)
+if (clargs.list):
+    list_dirs()
+    exit(0)
 if (clargs.file):
     upload_f = clargs.file
 if (clargs.dir):
