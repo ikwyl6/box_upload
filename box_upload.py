@@ -1,6 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
-# box_upload - A simple python script that uses 
+# box_upload - A simple python script that uses
 # OAuth 2.0 to upload a file to your box.com account.
 # Author: ikwyl6@protonmail.com
 
