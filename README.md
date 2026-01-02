@@ -1,3 +1,4 @@
+#### NOTE: This repository has been archived and moved to: https://codeberg.org/ikwyl6/box_upload
 ## box_upload
 A simple python script that uses Traditional 3-Legged OAuth2 to upload a file to your box.com account.
 
